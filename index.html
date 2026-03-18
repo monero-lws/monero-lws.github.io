@@ -8,6 +8,8 @@
     <!-- Bootstrap CSS -->
     <link href="bootstrap.min.css" rel="stylesheet">
     <link href="features.css" rel="stylesheet">
+    <link href="heroes.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="lws_logo2.svg">
     <title>monerolws.com</title>
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
 <style>
@@ -18,11 +20,11 @@
   </head>
   <body>
 <script src="bootstrap.bundle.min.js"></script>
-<main>
+<main><!--
   <div class="container py-4">
     <header class="pb-3 mb-4 border-bottom">
       <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-        <span class="fs-4">😎 monerolws.com</span>
+	<span class="fs-4"><img height="32" class="me-2" src="lws_logo2.svg" />monerolws.com</span>
       </a>
     </header>
     <div class="p-5 mb-4 bg-light rounded-3">
@@ -30,7 +32,17 @@
       <h1 class="display-5 fw-bold">Monero Light Wallets</h1>
         <p class="col-md-8 fs-4">Synchronize instantly without giving up the "spend" keys. The design is optimal for battery usage and usability.</p>
       </div>
+    </div> -->
+     <div class="px-4 py-5 my-5 text-center">
+    <img class="d-block mx-auto mb-4" src="lws_logo2.svg" alt="" width="72" height="57">
+    <h1 class="display-5 fw-bold">Monero Light Wallets</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Synchronize instantly without giving up the "spend" keys. Optimal battery usage and usability.</p>
+      <!-- <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+	<a href="https://github.com/monero-lws"><button type="button" class="btn btn-primary btn-lg px-4 gap-3">Github</button></a>
+      </div> -->
     </div>
+  </div>
   <div class="container px-4 py-5" id="hanging-icons">
 <!-- FOR USERS -->
     <h2 class="pb-2 border-bottom">For Users</h2>
@@ -47,7 +59,7 @@
             Website
           </a>
         </div>
-      </div>
+      </div> 
       <div class="col d-flex align-items-start">
         <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
 		<!-- <svg class="bi" width="1em" height="1em"><use xlink:href="#cpu-fill"/></svg> -->
@@ -67,10 +79,27 @@
     <h2 class="pb-2 border-bottom">For Self Hosters</h2>
     <div class="row g-4 py-5 row-cols-1 row-cols-lg-1">
       <div class="col d-flex align-items-start">
-	<span class="icon-square bg-light text-dark flex-shrink-0 me-3" style="font-size: 2em;">📒</span>
+	<span class="icon-square bg-light text-dark flex-shrink-0 me-3" style="font-size: 2em;">💎</span>
+        <div>
+          <h2>TrueNAS</h2>
+          <p>Monero Daemon and Monero-LWS are both in the community app repo.</p>
+	  <a href="https://apps.truenas.com/catalog/monerod/" class="btn btn-primary">monerod</a>
+	  <a href="https://apps.truenas.com/catalog/monero-lws/" class="btn btn-primary">monero-lws</a>
+          <a href="https://www.privacyguides.org/articles/2025/06/12/monero-server-using-truenas/#check-on-the-sync-status" class="btn btn-primary">
+            Setup Guide
+          </a>
+        </div>
+      </div>
+    </div>
+
+<!-- FOR DEVELOPERS -->
+    <h2 class="pb-2 border-bottom">For Developers</h2>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      <div class="col d-flex align-items-start">
+	<span class="icon-square bg-light text-dark flex-shrink-0 me-3" style="font-size: 2em;">👩🏼‍💻</span>
         <div>
           <h2>monero-lws</h2>
-          <p>Run your own server that light-wallets can use for cryptographic scanning.</p>
+	  <p>Access to wallet REST API, admin REST API, admin CLI API, and webhooks/zmq events.</p>
           <a href="https://docs.monerolws.com" class="btn btn-primary">
             Documentation
           </a>
@@ -79,11 +108,6 @@
 	  </a>
         </div>
       </div>
-    </div>
-
-<!-- FOR DEVELOPERS -->
-    <h2 class="pb-2 border-bottom">For Developers</h2>
-    <div class="row g-4 py-5 row-cols-1 row-cols-lg-2">
       <div class="col d-flex align-items-start">
 	<span class="icon-square bg-light text-dark flex-shrink-0 me-3" style="font-size: 2em;">🔑</span>
         <div>
