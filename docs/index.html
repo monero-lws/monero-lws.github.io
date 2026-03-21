@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="bootstrap.min.css" rel="stylesheet">
-    <link href="features.css" rel="stylesheet">
-    <link href="heroes.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="lws_logo2.svg">
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/features.css" rel="stylesheet">
+    <link href="/assets/css/heroes.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/assets/images/lws_logo2.svg">
     <title>monerolws.com</title>
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
 <style>
@@ -19,7 +19,7 @@
 </style>
   </head>
   <body>
-<script src="bootstrap.bundle.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
 <main><!--
   <div class="container py-4">
     <header class="pb-3 mb-4 border-bottom">
@@ -34,7 +34,7 @@
       </div>
     </div> -->
      <div class="px-4 py-5 my-5 text-center">
-    <img class="d-block mx-auto mb-4" src="lws_logo2.svg" alt="" width="72" height="57">
+    <img class="d-block mx-auto mb-4" src="/assets/images/lws_logo2.svg" alt="" width="72" height="57">
     <h1 class="display-5 fw-bold">Monero Light Wallets</h1>
     <div class="col-lg-6 mx-auto">
       <p class="lead mb-4">Synchronize instantly without giving up the "spend" keys. Optimal battery usage and usability.</p>
@@ -45,12 +45,12 @@
   </div>
   <div class="container px-4 py-5" id="hanging-icons">
 <!-- FOR USERS -->
-    <h2 class="pb-2 border-bottom">For Users</h2>
+    <h2 id="users" class="pb-2 border-bottom">For Users</h2>
     <div class="row g-4 py-5 row-cols-1 row-cols-lg-2">
       <div class="col d-flex align-items-start">
         <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
 		<!--  <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"/></svg> -->
-		<img style="width: 2em;" src="skylight_logo.svg" />
+		<img style="width: 2em;" src="/assets/images/skylight_logo.svg" />
         </div>
         <div>
           <h2>Skylight Wallet</h2>
@@ -63,7 +63,7 @@
       <div class="col d-flex align-items-start">
         <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
 		<!-- <svg class="bi" width="1em" height="1em"><use xlink:href="#cpu-fill"/></svg> -->
-		<img style="width: 2em;" src="cifro_codes_logo.svg" />
+		<img style="width: 1.75em;" src="/assets/images/lwcli_logo.svg" />
         </div>
         <div>
           <h2>lwcli</h2>
@@ -76,13 +76,16 @@
     </div>
 
 <!-- FOR SELF-HOSTERS -->
-    <h2 class="pb-2 border-bottom">For Self Hosters</h2>
-    <div class="row g-4 py-5 row-cols-1 row-cols-lg-1">
+    <h2 id="hosters" class="pb-2 border-bottom">For Self Hosters</h2>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-2">
       <div class="col d-flex align-items-start">
-	<span class="icon-square bg-light text-dark flex-shrink-0 me-3" style="font-size: 2em;">💎</span>
+	      <!-- <span class="icon-square bg-light text-dark flex-shrink-0 me-3" style="font-size: 2em;">💎</span> -->
+	<div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+	  <img style="width: 2em;" src="/assets/images/oci_icon_serverrack.svg" />
+        </div>
         <div>
-          <h2>TrueNAS</h2>
-          <p>Monero Daemon and Monero-LWS are both in the community app repo.</p>
+          <h2>Server</h2>
+          <p>Monero Daemon and Monero-LWS are in the TrueNAS community app repo.</p>
 	  <a href="https://apps.truenas.com/catalog/monerod/" class="btn btn-primary">monerod</a>
 	  <a href="https://apps.truenas.com/catalog/monero-lws/" class="btn btn-primary">monero-lws</a>
           <a href="https://www.privacyguides.org/articles/2025/06/12/monero-server-using-truenas/#check-on-the-sync-status" class="btn btn-primary">
@@ -90,10 +93,22 @@
           </a>
         </div>
       </div>
+      <div class="col d-flex align-items-start">
+        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+		<!--  <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"/></svg> -->
+		<img style="width: 2em;" src="/assets/images/oci_icon_container.svg" />
+        </div>
+        <div>
+          <h2>Containers</h2>
+          <p>Container images and compose files are provided to safely run Tor+monerod+LWS.</p>
+          <a href="/tutorials/containers/hidden_service" class="btn btn-primary">
+            Tutorials
+          </a>
+        </div>
+      </div> 
     </div>
-
 <!-- FOR DEVELOPERS -->
-    <h2 class="pb-2 border-bottom">For Developers</h2>
+    <h2 id="developers" class="pb-2 border-bottom">For Developers</h2>
     <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
       <div class="col d-flex align-items-start">
 	<span class="icon-square bg-light text-dark flex-shrink-0 me-3" style="font-size: 2em;">👩🏼‍💻</span>
@@ -129,10 +144,8 @@
         </div>
       </div>
     </div>
-  </div>
-
     <footer class="pt-3 mt-4 text-muted border-top">
-      &copy; 2026
+      Server and Container logo Copyright 2026 Open Container Initiative under the <a href="apache_2_license.txt">Apache 2.0 License</a>.
     </footer>
   </div>
 </main>

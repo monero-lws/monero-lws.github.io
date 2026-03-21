@@ -1,0 +1,26 @@
+[project]
+site_name = "monerolws.com"
+nav = [
+  {"Home" = "index.html"},
+  {"Tutorials" = [
+    {"Containers" = [
+      "tutorials/containers/hidden_service.md"
+    ]},
+    {"Administration" = [
+       "tutorials/admin/backup.md"
+    ]}
+  ]}
+]
+
+[project.theme]
+logo = "assets/images/lws_logo2.svg"
+favicon = "assets/images/lws_logo2.svg"
+features = [
+  "content.code.copy",
+  "navigation.tabs",
+  "navigation.sections",
+  "navigation.path"
+]
+
+[project.extra]
+homepage = "https://monerolws.com"
