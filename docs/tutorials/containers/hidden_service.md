@@ -1,12 +1,12 @@
 # Hidden Service
 The easiest setup for novice self-hosters is Tor+monerod+LWS running in a
-[single "docker compose" setup](#docker-compose)
-(provided below) on a spare machine at home. The Tor daemon provides end-to-end
-authenticated encryption from light-wallets to your home machine, without
-complex firewall rules, TLS certificates, or cloud computing costs.
-[Skylight wallet](https://skylight.magicgrants.com) has built-in Tor support on
-desktop and mobile, and [lwcli](https://github.com/cifro-codes/lwcli) has socks
-proxy for experienced desktop users that can run their own Tor client.
+[single "docker compose" setup](#docker-compose) on a spare machine at home.
+The Tor daemon provides end-to-end authenticated encryption from light-wallets
+to your home machine, without complex firewall rules, TLS certificates, or
+cloud computing costs. [Skylight wallet](https://skylight.magicgrants.com) has
+built-in Tor support on desktop and mobile, and
+[lwcli](https://github.com/cifro-codes/lwcli) has socks proxy for experienced
+desktop users that can run their own Tor client.
 
 !!! info
 
@@ -15,20 +15,20 @@ proxy for experienced desktop users that can run their own Tor client.
 
 ## Expectations
 ### ... for Users
-Your typical user will have to install Skylight from Android/iOS app store,
+Your typical user will have to install `Skylight` from Android/iOS app store,
 select the option to use builtin Tor, and then copy+paste a long "\*.onion"
 address into the server option. The onion address is automatically stored
 encrypted on all LWS wallets so it only has to be entered once.
 
-More advanced users on lwcli will have to run their own Tor client, and give
-lwcli the socks proxy address. lwcli automatically stores the proxy and
+More advanced users on `lwcli` will have to run their own Tor client, and give
+`lwcli` the socks proxy address. `lwcli` automatically stores the proxy and
 onion address encrypted in the metadata file.
 
 !!! warning
 
     One small "cheat" in the above explanation. You have to either allow _all_
     users that request an account on your LWS service, or manually approve
-    addresses via the command-line or
+    addresses via the [command-line](#list-requests) or
     [admin API](https://docs.monerolws.com/api/admin). Tutorial+code for sending
     accept/reject links via Pushover is in the works. Accepting all requests is
     acceptable for now - your hidden address has to be leaked as a LWS server
@@ -66,6 +66,11 @@ issue in Tor or monerod to affect the privacy of your users.
 The first step is setting up Linux and docker. These steps are out of scope for
 this guide; internet search engines are your friend here.
 
+!!! tip
+
+    Limit accounts that are in the OS group `docker`. Any account in this group
+    can read your Tor private key, so you'll want to restrict access.
+
 ### Create a directory to store config files
 The recommended directory name is `lws-hidden-service`, but create one of your
 choosing and `cd` into via bash.
@@ -97,7 +102,7 @@ forward incoming connections to the LWS.
 
 ### Initializing monerod
 LWS will complain if `monerod` is not synced past the most recent checkpoint.
-This unfortunately means we must run monerod separately initially, until is
+This unfortunately means we must run monerod separately initially, until it
 synchronizes with the most recent block on the network. The command to start
 this process is:
 
@@ -140,7 +145,7 @@ services:
       - tor_secrets:/var/lib/tor
   monerod:
     image: ghcr.io/sethforprivacy/simple-monerod
-    command: --rpc-restricted-bind-ip=0.0.0.0 --rpc-restricted-bind-port 18089 --no-igd --zmq-pub tcp://0.0.0.0:18083 --zmq-rpc-bind-ip 0.0.0.0 --confirm-external-bind
+    command: --rpc-restricted-bind-ip=0.0.0.0 --rpc-restricted-bind-port 18089 --no-igd --zmq-pub tcp://0.0.0.0:18083 --zmq-rpc-bind-ip 0.0.0.0 --confirm-external-bind --enable-dns-blacklist --ban-list /home/monero/ban_list.txt
     restart: always
     ports:
       - 18080:18080
@@ -187,7 +192,9 @@ docker run --rm -v lws-hidden-service_tor_secrets:/var/lib/tor docker.io/osminog
 ```
 
 which will NOT print out the secret keys for the server, just the public
-address.
+onion address. `Skylight` users can use this address directly when Tor is
+enabled, and `lwcli` (and similar) users will need to install Tor and set proxy
+settings to resolve the onion address.
 
 ### Port Forwarding
 If you know how to forward ports of your router, it is preferrable for the
