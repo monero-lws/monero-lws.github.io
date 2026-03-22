@@ -80,19 +80,11 @@ Before any of the services can start, a persistent onion address must be
 created. This address can be changed later to silently "revoke" some/all users,
 but this can also be achieved with an admin DB command.
 
-The first stage of the setup:
-
-```bash
-docker container create --name lws_tor_config docker.io/osminogin/tor-simple
-docker cp lws_tor_config:/etc/tor/torrc ./
-docker container rm lws_tor_config
-```
-
-Will create a file `torrc` in the current working directory which is the most
-recent default configuration for Tor. You must edit this file and add the
-following to the section labeled "for location-hidden services":
+Create a file called `torrc` in the current directory with the following
+contents:
 
 ```
+DataDirectory /var/lib/tor
 HiddenServiceDir /var/lib/tor/lws_hidden_service
 HiddenServicePort 80 lws:8080
 ```
@@ -137,8 +129,7 @@ running. Copy the below to a "compose.yml" file:
 name: lws-hidden-service
 services:
   tor:
-    image: docker.io/osminogin/tor-simple
-    command: tor
+    image: ghcr.io/monero-lws/tor
     restart: always
     volumes:
       - ./torrc:/etc/tor/torrc:ro
@@ -188,7 +179,7 @@ address on port 8080 OR by the new onion address. Finding your onion address
 is accomplished by running this command:
 
 ```bash
-docker run --rm -v lws-hidden-service_tor_secrets:/var/lib/tor docker.io/osminogin/tor-simple cat /var/lib/tor/lws_hidden_service/hostname
+docker run --rm -v lws-hidden-service_tor_secrets:/var/lib/tor busybox cat /var/lib/tor/lws_hidden_service/hostname
 ```
 
 which will NOT print out the secret keys for the server, just the public
@@ -263,7 +254,7 @@ Updating to the latest version of Tor, monerod, and LWS is achieved by running:
 
 ```bash
 docker pull ghcr.io/sethforprivacy/simple-monerod
-docker pull osminogin/tor-simple
+docker pull ghcr.io/monero-lws/tor
 docker pull ghcr.io/vtnerd/monero-lws
 ```
 
